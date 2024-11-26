@@ -1,5 +1,6 @@
 package at.htlsaafelden;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -10,17 +11,25 @@ public class Main {
         Container container = new Container("Container1", 1010, 40, 20, 20, List.of(mySchaf, myTisch));
         Paket paket = new Paket(myTisch);
 
+        List<Transportierbar> transportierbar = new ArrayList<>();
+        transportierbar.add(mySchaf);
+        transportierbar.add(myTisch);
+        transportierbar.add(container);
+        transportierbar.add(paket);
+
+        transportierbar.sort(null);
+
         InterfaceTest interfaceTest = new InterfaceTest();
 
-        print(myTisch, interfaceTest);
-        print(mySchaf, interfaceTest);
-        print(container, interfaceTest);
-        print(paket, interfaceTest);
+
+        for(Transportierbar element : transportierbar) {
+            print(element, interfaceTest);
+        }
     }
 
     public static void print(Transportierbar transportierbar, InterfaceTest interfaceTest) {
         System.out.println(interfaceTest.erstelleBeschriftung(transportierbar));
-        System.out.println("\tVolument: " + interfaceTest.berechneVolumen(transportierbar));
+        System.out.println("\tVolumen: " + interfaceTest.berechneVolumen(transportierbar));
         System.out.println("\tTransport machbar:" + interfaceTest.transportMachbar(transportierbar));
     }
 }
